@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/segment_anything" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
