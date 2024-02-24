@@ -6,63 +6,130 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>273</height>
+    <width>554</width>
+    <height>368</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Segment Anything</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
-    <widget class="QPushButton" name="pbHello">
-     <property name="text">
-      <string>Hello!</string>
+    <widget class="QgsCollapsibleGroupBox" name="mGroupBox_3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
+     <property name="title">
+      <string>Input data:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbInputDataLayer">
+        <property name="text">
+         <string>Input layer:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <widget class="QComboBox" name="qmlcbInputDataLayerOption">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines what part of the &amp;quot;Input layer&amp;quot; should be processed.&lt;/p&gt;&lt;p&gt;&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;Visible Part&lt;/span&gt;&amp;quot; allows to process the part currently visible on the map canvas.&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;Entire Layer&lt;/span&gt;&amp;quot; allows to process the entire ortophoto file&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;From Polygons&lt;/span&gt;&amp;quot; allows to select a polygon describing the area to be processed (e.g. if the processed field is a polygon, and we don't want to process outside of it)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lbInputDataLayerOption">
+        <property name="text">
+         <string>Layer option:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <widget class="QgsMapLayerComboBox" name="qmlcbInputDataLayer">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Layer which will be processed.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Most probably this is your ortophoto or map source (like satellite image from google earth).&lt;br/&gt;Needs to be a raster layer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lbInputDataPolygonsLayer">
+        <property name="text">
+         <string>Polygons layer:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="2">
+       <widget class="QgsMapLayerComboBox" name="qmlcbInputDataPolygonsLayer">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines the layer which is being used as a mask for the processing of &amp;quot;Input layer&amp;quot;. &lt;br/&gt;Only pixels within this mask layer will be processed.&lt;/p&gt;&lt;p&gt;Needs to be a vector layer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="1" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>192</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
+   <item row="1" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QDialogButtonBox" name="button_box">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="standardButtons">
+          <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="0">
+      <spacer name="verticalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>17</width>
+         <height>68</height>
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QDialogButtonBox" name="button_box">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="standardButtons">
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsCollapsibleGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>qgscollapsiblegroupbox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsmaplayercombobox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

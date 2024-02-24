@@ -27,6 +27,13 @@ import os
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 
+
+class InputDataLayerOption:
+    FROM_POLYGON = "From Polygons"
+    VISIBLE_PART = "Visible Part"
+    ENTIRE_LAYER = "Entire Layer"
+
+
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'segment_anything_dialog_base.ui'))
@@ -43,7 +50,28 @@ class SegmentAnythingDialog(QtWidgets.QDialog, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
 
-        self.pbHello.clicked.connect(self.onPbHello)
+        self._create_input_data_connections()
+        self._setup_input_data_ui()
 
-    def onPbHello(self):
-        print("Hello")
+
+    def _hide_polygons_layer(self):
+        is_visible = self.qmlcbInputDataLayerOption.currentText()==InputDataLayerOption.FROM_POLYGON
+        self.qmlcbInputDataPolygonsLayer.setVisible(is_visible)
+        self.lbInputDataPolygonsLayer.setVisible(is_visible)
+
+
+    def _create_input_data_connections(self):
+        self.qmlcbInputDataLayerOption.currentIndexChanged.connect(
+            self._hide_polygons_layer
+        )
+
+
+    def _setup_input_data_ui(self):
+        layer_options = [
+            InputDataLayerOption.VISIBLE_PART,
+            InputDataLayerOption.ENTIRE_LAYER,
+            InputDataLayerOption.FROM_POLYGON,
+        ]
+
+        for option in layer_options:
+            self.qmlcbInputDataLayerOption.addItem(option)
