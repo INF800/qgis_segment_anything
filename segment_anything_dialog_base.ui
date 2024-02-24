@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QPushButton" name="pbHello">
      <property name="text">
-      <string>Hello</string>
+      <string>Hello!</string>
      </property>
     </widget>
    </item>
