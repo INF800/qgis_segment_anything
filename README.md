@@ -1,5 +1,6 @@
-<html>
-<body>
+---
+Text generator from plugin builder:
+
 <h3>Plugin Builder Results</h3>
 
 Congratulations! You just built a plugin for QGIS!<br/><br />
@@ -37,6 +38,4 @@ For information on writing PyQGIS code, see <b>http://loc8.cc/pyqgis_resources</
 </div>
 <p>
 &copy;2011-2019 GeoApt LLC - geoapt.com 
-</p>
-</body>
-</html>
+</p
