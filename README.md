@@ -1,5 +1,7 @@
+This plugin uses [segment anything model](https://segment-anything.com/) from facebook research. Code and UI inspiration taken from [deepness](https://github.com/INF800/qgis-plugin-deepness).
+
 ---
-Text generator from plugin builder:
+Text auto0-generator from plugin builder:
 
 <h3>Plugin Builder Results</h3>
 
