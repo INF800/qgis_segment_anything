@@ -6,16 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>554</width>
-    <height>368</height>
+    <width>869</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Segment Anything</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0">
-    <widget class="QgsCollapsibleGroupBox" name="mGroupBox_3">
+   <item row="1" column="0" colspan="2">
+    <widget class="QgsCollapsibleGroupBox" name="mGroupBox">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
        <horstretch>0</horstretch>
@@ -23,55 +23,85 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>Input data:</string>
+      <string>ONNX Model (Default or Trained)</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_5">
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="qleModelPath">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="toolTip">
+         <string>Path to the model file</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="3">
+       <widget class="QLabel" name="lbModelInfoValue">
+        <property name="font">
+         <font>
+          <pointsize>7</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(135, 135, 133);</string>
+        </property>
+        <property name="text">
+         <string>Model not loaded! Please select its path and click &quot;Load Model&quot; button above first!</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="lbInputDataLayer">
+       <widget class="QLabel" name="lbModelFilePath">
         <property name="text">
-         <string>Input layer:</string>
+         <string>Model file path:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="QComboBox" name="qmlcbInputDataLayerOption">
+      <item row="0" column="3">
+       <widget class="QPushButton" name="pbLoadOrReloadModel">
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines what part of the &amp;quot;Input layer&amp;quot; should be processed.&lt;/p&gt;&lt;p&gt;&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;Visible Part&lt;/span&gt;&amp;quot; allows to process the part currently visible on the map canvas.&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;Entire Layer&lt;/span&gt;&amp;quot; allows to process the entire ortophoto file&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;From Polygons&lt;/span&gt;&amp;quot; allows to select a polygon describing the area to be processed (e.g. if the processed field is a polygon, and we don't want to process outside of it)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Reload the model given in the line edit above</string>
         </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="lbInputDataLayerOption">
         <property name="text">
-         <string>Layer option:</string>
+         <string>Load / Reload Model</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QgsMapLayerComboBox" name="qmlcbInputDataLayer">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Layer which will be processed.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Most probably this is your ortophoto or map source (like satellite image from google earth).&lt;br/&gt;Needs to be a raster layer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="lbInputDataPolygonsLayer">
+      <item row="2" column="0">
+       <widget class="QLabel" name="lbModelInfo">
         <property name="text">
-         <string>Polygons layer:</string>
+         <string>Model info:</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" colspan="2">
-       <widget class="QgsMapLayerComboBox" name="qmlcbInputDataPolygonsLayer">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines the layer which is being used as a mask for the processing of &amp;quot;Input layer&amp;quot;. &lt;br/&gt;Only pixels within this mask layer will be processed.&lt;/p&gt;&lt;p&gt;Needs to be a vector layer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pbBrowseModel">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>Browse...</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="2" column="0" colspan="2">
+    <widget class="QPushButton" name="pushButton_runInference">
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the inference, for the selected above paraeters.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Run</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -114,6 +144,63 @@
       </spacer>
      </item>
     </layout>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QgsCollapsibleGroupBox" name="mGroupBox_3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Input data:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="3" column="1" colspan="2">
+       <widget class="QgsMapLayerComboBox" name="qmlcbInputDataPolygonsLayer">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines the layer which is being used as a mask for the processing of &amp;quot;Input layer&amp;quot;. &lt;br/&gt;Only pixels within this mask layer will be processed.&lt;/p&gt;&lt;p&gt;Needs to be a vector layer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <widget class="QComboBox" name="qmlcbInputDataLayerOption">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines what part of the &amp;quot;Input layer&amp;quot; should be processed.&lt;/p&gt;&lt;p&gt;&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;Visible Part&lt;/span&gt;&amp;quot; allows to process the part currently visible on the map canvas.&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;Entire Layer&lt;/span&gt;&amp;quot; allows to process the entire ortophoto file&lt;br/&gt; - &amp;quot;&lt;span style=&quot; font-style:italic;&quot;&gt;From Polygons&lt;/span&gt;&amp;quot; allows to select a polygon describing the area to be processed (e.g. if the processed field is a polygon, and we don't want to process outside of it)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lbInputDataPolygonsLayer">
+        <property name="text">
+         <string>Polygons layer:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lbInputDataLayerOption">
+        <property name="text">
+         <string>Layer option:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbInputDataLayer">
+        <property name="text">
+         <string>Input layer:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <widget class="QgsMapLayerComboBox" name="qmlcbInputDataLayer">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Layer which will be processed.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Most probably this is your ortophoto or map source (like satellite image from google earth).&lt;br/&gt;Needs to be a raster layer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
