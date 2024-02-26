@@ -67,7 +67,7 @@
          <string>Reload the model given in the line edit above</string>
         </property>
         <property name="text">
-         <string>Load / Reload Model</string>
+         <string>🔄️ Reload</string>
         </property>
        </widget>
       </item>
@@ -84,7 +84,7 @@
          <bool>true</bool>
         </property>
         <property name="text">
-         <string>Browse...</string>
+         <string>Browse and Load</string>
         </property>
        </widget>
       </item>

@@ -23,9 +23,12 @@
 """
 
 import os
+import logging
+from datetime import datetime
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtWidgets import QComboBox, QFileDialog, QMessageBox
 
 
 class InputDataLayerOption:
@@ -35,8 +38,9 @@ class InputDataLayerOption:
 
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
-FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'segment_anything_dialog_base.ui'))
+FORM_CLASS, _ = uic.loadUiType(
+    os.path.join(os.path.dirname(__file__), "segment_anything_dialog_base.ui")
+)
 
 
 class SegmentAnythingDialog(QtWidgets.QDialog, FORM_CLASS):
@@ -48,23 +52,65 @@ class SegmentAnythingDialog(QtWidgets.QDialog, FORM_CLASS):
         # self.<objectname>, and you can use autoconnect slots - see
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
+        self._model = None
         self.setupUi(self)
 
-        self._create_input_data_connections()
+        self._create_connections()
         self._setup_input_data_ui()
 
-
-    def _hide_polygons_layer(self):
-        is_visible = self.qmlcbInputDataLayerOption.currentText()==InputDataLayerOption.FROM_POLYGON
+    def _toggle_polygons_layer_visiblity(self):
+        is_visible = (
+            self.qmlcbInputDataLayerOption.currentText()
+            == InputDataLayerOption.FROM_POLYGON
+        )
         self.qmlcbInputDataPolygonsLayer.setVisible(is_visible)
         self.lbInputDataPolygonsLayer.setVisible(is_visible)
 
+    def _load_model_and_display_info(self, abort_if_no_file_path: bool = False):
+        # load model
+        file_path = self.qleModelPath.text()
+        if not file_path and abort_if_no_file_path:
+            return
 
-    def _create_input_data_connections(self):
-        self.qmlcbInputDataLayerOption.currentIndexChanged.connect(
-            self._hide_polygons_layer
+        msg = ""
+        try:
+            self._model = ...  # TODO: Load model
+            msg = msg + f"✅ Model loaded successfully on: {datetime.now()}"
+        except Exception as e:
+            msg = (
+                "❌ Error! Failed to load the model.\n"
+                "Please make sure downloaded model is usable."
+            )
+            logging.exception(msg)
+
+            length_limit = 300
+            exception_msg = (
+                (str(e)[:length_limit] + "..") if len(str(e)) > length_limit else str(e)
+            )
+            msg = msg + f"\n\nException: {exception_msg}"
+            QMessageBox.critical(self, "Error!", msg)
+
+        self.lbModelInfoValue.setText(msg)
+
+    def _browse_model_path(self):
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Select Model ONNX file...",
+            os.path.expanduser("~"),
+            "All files (*.*);; ONNX files (*.onnx)",
         )
+        if file_path:
+            self.qleModelPath.setText(file_path)
+            self._load_model_and_display_info()
 
+    def _create_connections(self):
+        # Input raster data
+        self.qmlcbInputDataLayerOption.currentIndexChanged.connect(
+            self._toggle_polygons_layer_visiblity
+        )
+        # ONNX Model
+        self.pbBrowseModel.clicked.connect(self._browse_model_path)
+        self.pbLoadOrReloadModel.clicked.connect(self._load_model_and_display_info)
 
     def _setup_input_data_ui(self):
         layer_options = [
