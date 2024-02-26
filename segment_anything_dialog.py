@@ -103,14 +103,28 @@ class SegmentAnythingDialog(QtWidgets.QDialog, FORM_CLASS):
             self.qleModelPath.setText(file_path)
             self._load_model_and_display_info()
 
+    def _run_inference(self):
+        msg = (
+            f"Selected vector data (image): {str(self.qmlcbInputDataLayer.currentLayer())}\n"
+            f"Selected Model: {self._model}\n\n"
+        )
+
+        msg += "⌛ Running...\n"
+        self.lbRunStatusValue.setText(msg)
+
+        msg += "✅ Done!"
+        self.lbRunStatusValue.setText(msg)
+
     def _create_connections(self):
-        # Input raster data
+        # Input vector / raster data
         self.qmlcbInputDataLayerOption.currentIndexChanged.connect(
             self._toggle_polygons_layer_visiblity
         )
-        # ONNX Model
+        # Load ONNX Model
         self.pbBrowseModel.clicked.connect(self._browse_model_path)
         self.pbLoadOrReloadModel.clicked.connect(self._load_model_and_display_info)
+        # Run Inference
+        self.pbRunInference.clicked.connect(self._run_inference)
 
     def _setup_input_data_ui(self):
         layer_options = [
