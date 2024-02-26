@@ -3,7 +3,7 @@ This plugin uses [segment anything model](https://segment-anything.com/) from fa
 This work would not have been possible without the introductory youtube videos by [Rob](https://www.youtube.com/watch?v=GccxvQ1ypbc&list=PLNGJFYgJ43Vo2P9Q8TWf7_ApmFDTiW9Ku).
 
 ---
-Text auto0-generator from plugin builder:
+Text auto-generator from plugin builder:
 
 <h3>Plugin Builder Results</h3>
 
