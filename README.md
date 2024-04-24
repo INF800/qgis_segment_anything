@@ -1,8 +1,10 @@
+### Segment Anything With QGIS
+
 This plugin uses [segment anything model](https://segment-anything.com/) from facebook research. Code and UI inspiration taken from [deepness](https://github.com/INF800/qgis-plugin-deepness).
 
 This work would not have been possible without the introductory youtube videos by [Rob](https://www.youtube.com/watch?v=GccxvQ1ypbc&list=PLNGJFYgJ43Vo2P9Q8TWf7_ApmFDTiW9Ku).
 
-For Developers:
+### For Developers:
 
 - Application name for UI design: Qt Designer with QGIS 2.28.15 custom wighets 
 - Application name for opening plugin: QGIS 2.28.15 Firenze
