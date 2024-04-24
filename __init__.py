@@ -31,6 +31,13 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :param iface: A QGIS interface instance.
     :type iface: QgsInterface
     """
-    
+
+    from .packages_installer_dialog import (
+        check_required_packages_and_install_if_necessary,
+    )
+
+    check_required_packages_and_install_if_necessary(iface=iface)
+
     from .segment_anything import SegmentAnything
+
     return SegmentAnything(iface)
