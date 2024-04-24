@@ -176,7 +176,7 @@
       <string notr="true">color: rgb(135, 135, 133);</string>
      </property>
      <property name="text">
-      <string>After selecting all &quot;Input Data&quot; and &quot;ONNX Model&quot; options, click on &quot;Run&quot; button above.</string>
+      <string>After selecting all the &quot;Input Data&quot; and &quot;ONNX Model&quot; options, click on &quot;Run&quot; button above.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
